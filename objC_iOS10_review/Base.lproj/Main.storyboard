@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xhr-Vs-Evb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--What I say?-->
+        <scene sceneID="aem-vK-gYI">
+            <objects>
+                <viewController id="UAS-66-EfI" customClass="EVARootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wE4-41-WJX"/>
+                        <viewControllerLayoutGuide type="bottom" id="zfJ-Wx-qom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="giz-C2-8cI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="esE-P0-RHi">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recognition control" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y86-qp-oHp">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rjw-SJ-G5s">
+                                        <color key="progressTintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="trackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJg-Ou-LRl">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="3jh-hv-KSI"/>
+                                        </constraints>
+                                        <state key="normal" title="Start recognize"/>
+                                        <state key="selected" title="Stop"/>
+                                        <connections>
+                                            <action selector="onActionPressed:" destination="UAS-66-EfI" eventType="touchUpInside" id="uj6-bs-hXg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rjw-SJ-G5s" firstAttribute="leading" secondItem="esE-P0-RHi" secondAttribute="leading" id="M86-VW-cbb"/>
+                                    <constraint firstAttribute="trailing" secondItem="rjw-SJ-G5s" secondAttribute="trailing" id="yId-Ir-bD5"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4TP-Ag-uIk">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The best transcription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1p-Q8-K4T">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="_ here must be recognized text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Um8-fW-oPy">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Um8-fW-oPy" firstAttribute="leading" secondItem="4TP-Ag-uIk" secondAttribute="leading" id="DUw-Ih-NP5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Um8-fW-oPy" secondAttribute="trailing" id="whS-so-TcN"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4TP-Ag-uIk" firstAttribute="top" secondItem="esE-P0-RHi" secondAttribute="bottom" constant="40" id="6X5-2f-RTj"/>
+                            <constraint firstItem="esE-P0-RHi" firstAttribute="leading" secondItem="giz-C2-8cI" secondAttribute="leading" constant="20" id="Lv4-C4-U2y"/>
+                            <constraint firstItem="zfJ-Wx-qom" firstAttribute="top" secondItem="4TP-Ag-uIk" secondAttribute="bottom" constant="19" id="lZG-WJ-PW3"/>
+                            <constraint firstItem="esE-P0-RHi" firstAttribute="top" secondItem="wE4-41-WJX" secondAttribute="bottom" constant="40" id="mvG-uy-dTV"/>
+                            <constraint firstAttribute="trailing" secondItem="4TP-Ag-uIk" secondAttribute="trailing" constant="20" id="sDc-iS-yLf"/>
+                            <constraint firstAttribute="trailing" secondItem="esE-P0-RHi" secondAttribute="trailing" constant="20" id="unk-4M-QrN"/>
+                            <constraint firstItem="4TP-Ag-uIk" firstAttribute="leading" secondItem="giz-C2-8cI" secondAttribute="leading" constant="20" id="xPi-Cz-b1A"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="What I say?" id="g6v-rX-rHR"/>
+                    <connections>
+                        <outlet property="actionButton" destination="ZJg-Ou-LRl" id="fP0-EX-oq4"/>
+                        <outlet property="textContainer" destination="Um8-fW-oPy" id="Ug7-jb-Lfw"/>
+                        <outlet property="textInfo" destination="V1p-Q8-K4T" id="h9S-4c-Ln8"/>
+                        <outlet property="timeProgress" destination="rjw-SJ-G5s" id="3g0-KG-bB2"/>
+                        <outlet property="topText" destination="y86-qp-oHp" id="1B4-I5-ifQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7k5-JV-VxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="904.49775112443785"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="SDL-8z-5FI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xhr-Vs-Evb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yiw-P7-0Do">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UAS-66-EfI" kind="relationship" relationship="rootViewController" id="J2S-BW-MdH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SRa-Jg-UZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-71.200000000000003" y="903.59820089955031"/>
+        </scene>
+    </scenes>
+</document>
