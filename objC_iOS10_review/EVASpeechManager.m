@@ -25,11 +25,11 @@ static NSUInteger const bus = 0;
 
 @interface EVASpeechManager () <SFSpeechRecognitionTaskDelegate>
 
-@property SFSpeechRecognizer *recognizer;
-@property AVAudioEngine *audioEngine;
-@property (nonatomic) SFSpeechAudioBufferRecognitionRequest *request;
-@property SFSpeechRecognitionTask *currentTask;
-@property (copy) NSString *buffer;
+@property (nonatomic, strong) SFSpeechRecognizer *recognizer;
+@property (nonatomic, strong) AVAudioEngine *audioEngine;
+@property (nonatomic, strong) SFSpeechAudioBufferRecognitionRequest *request;
+@property (nonatomic, strong) SFSpeechRecognitionTask *currentTask;
+@property (nonatomic, copy) NSString *buffer;
 
 @end
 
@@ -61,7 +61,7 @@ static NSUInteger const bus = 0;
 
 - (void)startRecognizeWithSuccess:(void(^)(BOOL success))success {
   BOOL isRunning = [self isTaskInProgress];
-  (isRunning) ? [self informDelegateErrorType:EVASpeechManagerErrorManagerIsBusy] : [self performRecognize];
+  (isRunning) ? [self informDelegateErrorType:EVASpeechManagerErrorManagerIsBusy] : [self performRecognition];
   
   if (success != nil) {
     success(!isRunning);
@@ -90,13 +90,11 @@ static NSUInteger const bus = 0;
     self.audioEngine = [[AVAudioEngine alloc] init];
     AVAudioInputNode *node = self.audioEngine.inputNode;
     AVAudioFormat *recordingFormat = [node outputFormatForBus:bus];
-    __weak typeof(self) weakSelf = self;
     [node installTapOnBus:bus
                bufferSize:1024
                    format:recordingFormat
                     block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
-                      __strong typeof(weakSelf) strongSelf = weakSelf;
-                      [strongSelf.request appendAudioPCMBuffer:buffer];
+                      [self.request appendAudioPCMBuffer:buffer];
                     }];
   }
 }
@@ -110,7 +108,7 @@ static NSUInteger const bus = 0;
       [self informDelegateErrorType:(EVASpeechManagerErrorSpeechRecognitionDenied)];
       break;
     case SFSpeechRecognizerAuthorizationStatusRestricted:
-      // TODO: неизведанное состояние. исследовать позже
+      // ???: неизведанное состояние. дождемся документации
       break;
     case SFSpeechRecognizerAuthorizationStatusAuthorized: {
       //  do nothing
@@ -127,7 +125,7 @@ static NSUInteger const bus = 0;
   }];
 }
 
-- (void)performRecognize {
+- (void)performRecognition {
   [self.audioEngine prepare];
   NSError *error = nil;
   if ([self.audioEngine startAndReturnError:&error]) {
